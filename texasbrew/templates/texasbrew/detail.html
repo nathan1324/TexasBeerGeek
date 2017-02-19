@@ -1,0 +1,88 @@
+{% extends 'texasbrew/base.html' %}
+{% block title %}{{ brewery }}{% endblock %}
+{% block breweries_active %}active{% endblock %}
+
+{% block body %}
+<div class="container-fluid beers-container">
+
+    <div class="row">
+
+        <!-- Left Brewery Info -->
+        <div class="col-sm-4 col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <a href="{% url 'texasbrew:detail' brewery.id %}">
+                        {% if brewery.brew_logo %}
+                            <img src="{{ brewery.brew_logo.url }}" class="img-responsive">
+                        {% else %}
+                            <h3>No image to display</h3>
+                        {% endif %}
+                    </a>
+                    <h1>{{ brewery.brew_name }} <small>{{ brewery.brew_location }}</small></h1>
+{#                    <h2>{{ brewery. }}</h2>#}
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Beer Info -->
+        <div class="col-sm-8 col-md-9">
+
+            <ul class="nav nav-pills" style="margin-bottom: 10px;">
+                <li role="presentation" class="active"><a href="{% url 'texasbrew:detail' brewery.id %}">View All</a></li>
+                <li role="presentation"><a href="{% url 'texasbrew:create_song' brewery.id %}">Add a New Beer</a></li>
+            </ul>
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                    <h3>All Beers</h3>
+
+                    {% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Image</th>
+                            <th>Favorite</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for beer in brewery.beer_set.all %}
+                            <tr>
+                                <td>{{ beer.beer_name }}</td>
+                                <td>
+                                    <a href="{% url 'texasbrew:detail' beer.brewery.id %}">
+                                            <img src="{{ beer.brewery.beer_logo.url }}" class="img-responsive" style="width: 20px; float: left; margin-right: 10px;" />
+                                        </a>
+                                </td>
+                                <td>
+                                    <a href="{% url 'texasbrew:favorite' beer.id %}" class="btn-favorite"><span class="glyphicon glyphicon-star {% if beer.is_favorite %}active{% endif %}"></span></a>
+                                </td>
+                                <td>
+                                    <form action="{% url 'texasbrew:delete_song' brewery.id beer.id %}" method="post" style="display: inline;">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="beer_id" value="{{ beer.id }}" />
+                                        <button type="submit" class="btn btn-danger btn-xs">
+                                            <span class="glyphicon glyphicon-remove"></span>&nbsp; Delete
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
