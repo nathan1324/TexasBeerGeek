@@ -8,3 +8,5 @@ https://cloud.githubusercontent.com/assets/17841613/25041203/12024dfc-20d4-11e7-
 https://cloud.githubusercontent.com/assets/17841613/25041278/9f139066-20d4-11e7-8f3e-1507e8db2e32.png
 
 https://cloud.githubusercontent.com/assets/17841613/25041296/bef79be8-20d4-11e7-8da7-b24ba115754d.png
+
+<img src="https://cloud.githubusercontent.com/assets/17841613/25041203/12024dfc-20d4-11e7-9c72-41e165c87ccd.png" width="15%"></img> <img src="https://cloud.githubusercontent.com/assets/17841613/25041278/9f139066-20d4-11e7-8f3e-1507e8db2e32.png" width="15%"></img> <img src="https://cloud.githubusercontent.com/assets/17841613/25041296/bef79be8-20d4-11e7-8da7-b24ba115754d.png" width="15%"></img> 
